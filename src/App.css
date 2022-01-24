@@ -35,6 +35,10 @@ input {
 
 }
 
+input[type="date" i] {
+  font-family: Arial, Helvetica, sans-serif
+}
+
 .date-format {
   font-size: 12px;
   font-family: Arial, Helvetica, sans-serif;
