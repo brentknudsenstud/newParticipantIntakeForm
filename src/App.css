@@ -36,3 +36,41 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px;
+  background-color: lightgray;
+  color:rgb(42, 42, 73);
+}
+
+form {
+  border: solid 2px rgb(42, 42, 73);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: pink;
+  padding: 24px;
+}
+
+input {
+  margin: 4px;
+}
+
+.clear, .submit {
+  margin: 8px;
+  padding: 4px 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  color:rgb(42, 42, 73);
+  border: solid 2px green;
+  border-radius: 4px;
+  background: rgb(226, 250, 230);
+
+}
+
+.date-format {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}

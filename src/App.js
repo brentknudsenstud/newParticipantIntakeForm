@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import validator from 'validator';
 
 function App() {
@@ -10,6 +10,8 @@ function App() {
   const birthRef = useRef(null);
   const agreeRef = useRef(null);
   const formRef = useRef(null);
+
+  const [postId, setPostId] = useState(null);
 
   const [errorMessage, setErrorMessage] = useState('');
   
@@ -36,11 +38,27 @@ function App() {
     } else {
 
     }
+
+    
+
   }
 
   function handleClear() {
     formRef.current.reset();
   }
+
+  useEffect(() => {
+    const apiRequest = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: 'Intake Form HTTP POST Request'})
+    };
+    fetch('https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users', apiRequest)
+      .then(res => res.json())
+      .then(data => setPostId(data.id));
+  },
+  []
+  );
 
   return (
     <form className="intake-box" ref={formRef}>
@@ -51,10 +69,12 @@ function App() {
       <input type="email" ref={emailRef} required/>
       <label className="label" >Birth Date</label>
       <input type="date" ref={birthRef} onChange={(e) => validateDate(e.target.value)} />
-      <span>{errorMessage}</span>
-      <input type="checkbox" ref={agreeRef}/><label>I agree to be contacted by email.</label>
-      <button className="clear" onClick={handleClear}>Clear</button>
-      <input className="submit" type="submit" value="Submit" onClick={handleSubmit} />  
+      <span className="date-format">{errorMessage}</span>
+      <span><input type="checkbox" ref={agreeRef} />I agree to be contacted by email.</span>
+      <div className="buttons">
+        <button className="clear" onClick={handleClear}>Clear</button>
+        <input className="submit" type="submit" value="Submit" onClick={handleSubmit} />  
+      </div>
     </form>
   );
   }
