@@ -40,7 +40,7 @@ function App() {
               "name": nameRef.current?.value,
               "email": emailRef.current?.value,
               "birthDate": birthRef.current?.value,
-              "emailConsent": emailRef.current?.checked,
+              "emailConsent": agreeRef.current?.checked,
             }
           ])
         };
@@ -48,9 +48,7 @@ function App() {
           .then(res => res.json())
           .then(handleClear)
           .then(showSuccess)
-          .catch(error => console.log(error))
-
-    } else {
+          .catch(error => console.log(error));
 
     }
   }
@@ -71,7 +69,7 @@ function App() {
       <label className="label" >Email</label>
       <input type="email" ref={emailRef} required/>
       <label className="label" >Birth Date</label>
-      <input type="date" ref={birthRef} onChange={(e) => validateDate(e.target.value)} />
+      <input type="date" max="2022-01-23" ref={birthRef} onChange={(e) => validateDate(e.target.value)} />
       <span className="date-format">{errorMessage}</span>
       <span><input type="checkbox" ref={agreeRef} />I agree to be contacted by email.</span>
       <div className="buttons">
