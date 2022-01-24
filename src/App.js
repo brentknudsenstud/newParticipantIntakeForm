@@ -70,7 +70,7 @@ function App() {
       <label className="label" >Email</label>
       <input type="email" ref={emailRef} required/>
       <label className="label" >Birth Date</label>
-      <input type="date" max="2022-01-23" ref={birthRef} onChange={(e) => validateDate(e.target.value)} />
+      <input className="date" type="date" max="2022-01-23" ref={birthRef} onChange={(e) => validateDate(e.target.value)} />
       <span className="date-format">{errorMessage}</span>
       <span><input type="checkbox" ref={agreeRef} />I agree to be contacted by email.</span>
       <div className="buttons">
