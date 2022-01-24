@@ -37,6 +37,7 @@ function App() {
           headers: {'Content-Type': 'application/json' },
           body: JSON.stringify([
             {
+              "id": 1,
               "name": nameRef.current?.value,
               "email": emailRef.current?.value,
               "birthDate": birthRef.current?.value,

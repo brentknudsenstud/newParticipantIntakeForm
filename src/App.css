@@ -13,7 +13,7 @@ body {
 
 form {
   border: solid 2px rgb(42, 42, 73);
-  border-radius: 8px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   background-color: #f1f1f1;
@@ -29,9 +29,9 @@ input {
   padding: 4px 8px;
   font-family: Arial, Helvetica, sans-serif;
   color:rgb(42, 42, 73);
-  border: solid 2px green;
+  border: solid 2px rgb(42, 42, 73);
   border-radius: 4px;
-  background: rgb(226, 250, 230);
+  background-color: white;
 
 }
 
