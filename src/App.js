@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import validator from 'validator';
 
 function App() {
@@ -10,8 +9,6 @@ function App() {
   const birthRef = useRef(null);
   const agreeRef = useRef(null);
   const formRef = useRef(null);
-
-  const [postId, setPostId] = useState(null);
 
   const [errorMessage, setErrorMessage] = useState('');
   
@@ -23,7 +20,6 @@ function App() {
     }
     }
   
-
   function handleSubmit(e) {
     e.preventDefault();
     const validName = nameRef.current?.value?.length > 0;
@@ -35,30 +31,37 @@ function App() {
     if (allValid) {
       console.log(allValid)
       console.log(agreeRef.current.checked)
+
+        const apiRequest = {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json' },
+          body: JSON.stringify([
+            {
+              "name": nameRef.current?.value,
+              "email": emailRef.current?.value,
+              "birthDate": birthRef.current?.value,
+              "emailConsent": emailRef.current?.checked,
+            }
+          ])
+        };
+        fetch('https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users', apiRequest)
+          .then(res => res.json())
+          .then(handleClear)
+          .then(showSuccess)
+          .catch(error => console.log(error))
+
     } else {
 
     }
-
-    
-
   }
 
   function handleClear() {
     formRef.current.reset();
   }
 
-  useEffect(() => {
-    const apiRequest = {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: 'Intake Form HTTP POST Request'})
-    };
-    fetch('https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users', apiRequest)
-      .then(res => res.json())
-      .then(data => setPostId(data.id));
-  },
-  []
-  );
+  function showSuccess() {
+    alert("You're form was submitted successfully")
+  }
 
   return (
     <form className="intake-box" ref={formRef}>
